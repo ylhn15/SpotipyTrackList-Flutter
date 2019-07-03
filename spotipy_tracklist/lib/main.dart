@@ -29,8 +29,9 @@ class Track {
   final String album;
   final String playedDate;
   final String externalUrl;
+  final String thumbnailUrl;
 
-  Track({this.name, this.artists, this.album, this.playedDate, this.externalUrl});
+  Track({this.name, this.artists, this.album, this.playedDate, this.externalUrl, this.thumbnailUrl});
 
   factory Track.fromJson(Map<String, dynamic> json) {
     return Track(
@@ -39,6 +40,7 @@ class Track {
       album: json['album'],
       playedDate: json['played_date'],
       externalUrl: json['external_url'],
+      thumbnailUrl: json['thumbnail'],
     );
   }
 }
@@ -81,10 +83,14 @@ class MyApp extends StatelessWidget {
                     itemBuilder: (BuildContext context, int index) {
                       return Card(
                         child: ListTile(
-                            title: Text('Artist: ${snapshot.data[index].artists}\nSong: ${snapshot.data[index].name}\nAlbum: ${snapshot.data[index].album}\nPlayed at: ${snapshot.data[index].playedDate}'),
-                          onTap:() {
-                            launchURL(snapshot.data[index].externalUrl);
-                          }
+                            leading: CircleAvatar(
+                              backgroundImage: new NetworkImage(snapshot.data[index].thumbnailUrl),
+                            ),
+                            title: Text('Artist: ${snapshot.data[index].artists}'),
+                            subtitle: Text('Song: ${snapshot.data[index].name}\nAlbum: ${snapshot.data[index].album}\nPlayed at: ${snapshot.data[index].playedDate}'),
+                            onTap:() {
+                              launchURL(snapshot.data[index].externalUrl);
+                            }
                         ),
                       );
                     }
