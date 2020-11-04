@@ -1,4 +1,4 @@
-# SpotipyTracklist_Flutter
+# Spotipy Trackhistory PWA written in Flutter
 ## Description
 Progressive Web App written in Flutter to display the Spotify Tracklist created with [SpotipyTracklist](https://github.com/ylhn15/SpotipyTracklist).
 
